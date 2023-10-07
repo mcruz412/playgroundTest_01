@@ -1,10 +1,10 @@
 import UIKit
 
 struct VehicleInformation {
-    let Make: String
-    let Model: String
-    let Year: Int
-    let LicensePlate: String
+    let make: String
+    let model: String
+    let year: Int
+    let licensePlate: String
 }
 
 enum DriveTrain: String {
@@ -17,32 +17,33 @@ enum DriveTrain: String {
 struct Vehicle {
     let information: VehicleInformation
     let driveTrain: DriveTrain
+    
+    func vehicleOpinion() -> String {
+        switch driveTrain {
+        case .awd: return ("Ohhh, you have a \(information.model). That's an \(DriveTrain.awd.rawValue), so you can go off-roading with it!")
+        case .rwd: return("If you want fast car, a \(DriveTrain.rwd.rawValue) is what you want. So you'll have fun with your \(information.model) on the road.")
+        case .fourwd: return("You have \(information.model)?! Pack your bags. We're going to Moab with that \(DriveTrain.fourwd.rawValue) vehicle of yours!")
+        default: return("That \(information.model) of yours is a good city or road-trip vehicle. That's about it with a \(DriveTrain.fwd.rawValue).")
+        }
+    }
 }
 
+let myVehicles = [
+    Vehicle(information: .init(make: "Toyota", model: "4 Runner", year: 2014, licensePlate: "55AA22"), driveTrain: .awd),
+    Vehicle(information: .init(make: "Toyota", model: "Corolla", year: 2021, licensePlate: "ABC1EFG"), driveTrain: .fwd),
+    Vehicle(information: .init(make: "Toyota", model: "LandCruiser", year: 2023, licensePlate: "GR4NDM01"), driveTrain: .awd),
+    Vehicle(information: .init(make: "Subaru", model: "DeForester", year: 2021, licensePlate: "YG3YBXD"), driveTrain: .awd),
+    Vehicle(information: .init(make: "Honda", model: "Integra", year: 2006, licensePlate: "AXW12ED"), driveTrain: .fwd),
+    Vehicle(information: .init(make: "Chrysler", model: "Pacifica", year: 2021, licensePlate: "12LED9P"), driveTrain: .fwd),
+    Vehicle(information: .init(make: "Subaru", model: "BRZ", year: 2019, licensePlate: "BRZ110LD"), driveTrain: .rwd),
+    Vehicle(information: .init(make: "Kia", model: "Stinger", year: 2022, licensePlate: "K1A4MWX"), driveTrain: .rwd),
+    Vehicle(information: .init(make: "Chevrolet", model: "Colorado", year: 2023, licensePlate: "C0L4VK"), driveTrain: .fourwd),
+    Vehicle(information: .init(make: "GMC", model: "Canyon", year: 2018, licensePlate: "XMH01D6"), driveTrain: .fourwd)
+]
 
-let fourRunner = Vehicle(information: .init(Make: "Toyota", Model: "4 Runner", Year: 2014, LicensePlate: "55AA22"), driveTrain: .awd)
+let shuffledVehicles = myVehicles.shuffled()
 
-let corolla = Vehicle(information: .init(Make: "Toyota", Model: "Corolla", Year: 2021, LicensePlate: "ABC1EFG"), driveTrain: .fwd)
 
-let landCruiser = Vehicle(information: .init(Make: "Toyota", Model: "LandCruiser", Year: 2023, LicensePlate: "GR4NDM01"), driveTrain: .awd)
-
-let deForester = Vehicle(information: .init(Make: "Subaru", Model: "DeForester", Year: 2021, LicensePlate: "YG3YBXD"), driveTrain: .awd)
-
-let integra = Vehicle(information: .init(Make: "Honda", Model: "Integra", Year: 2006, LicensePlate: "AXW12ED"), driveTrain: .fwd)
-
-let pacifica = Vehicle(information: .init(Make: "Chrysler", Model: "Pacifica", Year: 2021, LicensePlate: "12LED9P"), driveTrain: .fwd)
-
-let brz = Vehicle(information: .init(Make: "Subaru", Model: "BRZ", Year: 2019, LicensePlate: "BRZ110LD"), driveTrain: .rwd)
-
-let stinger = Vehicle(information: .init(Make: "Kia", Model: "Stinger", Year: 2022, LicensePlate: "K1A4MWX"), driveTrain: .rwd)
-
-let colorado = Vehicle(information: .init(Make: "Chevrolet", Model: "Colorado", Year: 2023, LicensePlate: "C0L4VK"), driveTrain: .fourwd)
-
-let canyon = Vehicle(information: .init(Make: "GMC", Model: "Canyon", Year: 2018, LicensePlate: "XMH01D6"), driveTrain: .fourwd)
-
-let carArray = [fourRunner, corolla, landCruiser, deForester, integra, pacifica, brz, stinger, colorado, canyon]
-
-for _ in carArray {
-    print(carArray)
+for vehicle in shuffledVehicles {
+    print(vehicle.vehicleOpinion())
 }
-
