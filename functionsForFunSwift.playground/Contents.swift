@@ -43,9 +43,7 @@ let myVehicles = [
 
 let shuffledVehicles = myVehicles.shuffled()
 
+
 for vehicle in shuffledVehicles {
     print(vehicle.vehicleOpinion())
 }
-
-
-//print out each car nicely. and print out a sentence for each line
